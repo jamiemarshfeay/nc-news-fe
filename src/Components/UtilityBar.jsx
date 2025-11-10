@@ -1,7 +1,7 @@
 function UtilityBar() {
   return (
     <>
-      <p>Hi</p>
+      <p>Hi from utility bar!</p>
     </>
   );
 }

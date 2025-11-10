@@ -4,9 +4,9 @@ function ArticleList({ articleList }) {
       <ul id="all-articles-list">
         {articleList.map((article) => {
           return (
-            <li class="article-list-items" key={article.article_id}>
+            <li className="article-list-items" key={article.article_id}>
               <h3>{article.title}</h3>
-              <ul class="article-details">
+              <ul className="article-details">
                 <li>
                   Topic:{" "}
                   {article.topic[0].toUpperCase() + article.topic.slice(1)}
