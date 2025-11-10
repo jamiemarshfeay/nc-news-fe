@@ -1,14 +1,21 @@
-/* #root {
+#root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
 
-.card {
-  padding: 2em;
+#all-articles-list {
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+.article-details {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.article-list-items {
+  border: solid 1px red;
+}
