@@ -18,7 +18,7 @@ function AllArticles() {
   return (
     <>
       <UtilityBar />
-      <ArticleList articleList={articleList}/>
+      <ArticleList articleList={articleList} />
     </>
   );
 }
