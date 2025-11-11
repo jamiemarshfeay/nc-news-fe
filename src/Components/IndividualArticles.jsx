@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import PreviousNextButtons from "./PreviousNextButtons";
 import ArticleDetails from "./ArticleDetails";
+import VotingButtons from "./VotingButtons";
 import CommentSection from "./CommentSection";
 
 function IndividualArticles() {
@@ -38,9 +40,13 @@ function IndividualArticles() {
     return <p>Unable to load article.</p>;
   }
 
+  function onVoteApplied(updatedArticle) {
+    setArticleDetailsToDisplay(updatedArticle);
+  }
+
   return (
     <>
-      {/* <PreviousNextButtons /> */}
+      <PreviousNextButtons />
       <h2>{articleDetailsToDisplay.title}</h2>
       <img
         src={articleDetailsToDisplay.article_img_url}
@@ -48,7 +54,11 @@ function IndividualArticles() {
         role="presentation"
       />
       <ArticleDetails articleDetailsToDisplay={articleDetailsToDisplay} />
-      {/* <VotingButtons /> */}
+      <VotingButtons
+        articleDetailsToDisplay={articleDetailsToDisplay}
+        onVoteApplied={onVoteApplied}
+        // onOptimisticVote={onOptimisticVote}
+      />
       <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
     </>
   );
