@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+ul {
+  list-style-type: none;
+}
+
 #all-articles-list {
   list-style-type: none;
   display: grid;
@@ -18,4 +22,9 @@
 
 .article-list-items {
   border: solid 1px red;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
 }
