@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function VotingButtons({ articleDetailsToDisplay, onVoteApplied }) {
+function VotingButtons({ articleDetailsToDisplay, onVoteApplied, onOptimisitcVote, onFailedVote }) {
   const [localArticleVotes, setLocalArticleVotes] = useState(
     articleDetailsToDisplay.votes
   );
@@ -20,7 +20,8 @@ function VotingButtons({ articleDetailsToDisplay, onVoteApplied }) {
     }
 
     setLocalArticleVotes(currentValue => currentValue + incrementValue);
-    // onOptimisitcVote?.(localArticleVotes);
+    console.log(localArticleVotes, '<<< local article votes before patching')
+    onOptimisitcVote?.(localArticleVotes);
 
     fetch(
       `https://nc-news-application-7t81.onrender.com/api/articles/${articleDetailsToDisplay.article_id}`,
@@ -45,6 +46,7 @@ function VotingButtons({ articleDetailsToDisplay, onVoteApplied }) {
       })
       .catch(() => {
         setLocalArticleVotes(currentValue => currentValue - incrementValue);
+        onFailedVote?.(localArticleVotes);
       })
       .finally(() => {
         setIsVoting(false);

@@ -44,6 +44,18 @@ function IndividualArticles() {
     setArticleDetailsToDisplay(updatedArticle);
   }
 
+  function onOptimisticVote(optimisticVotes) {
+    const temporaryObject = [...articleDetailsToDisplay];
+    temporaryObject.votes = optimisticVotes;
+    setArticleDetailsToDisplay(temporaryObject);
+  }
+
+  function onFailedVote(failedVotes) {
+    const temporaryObject = [...articleDetailsToDisplay];
+    temporaryObject.votes = failedVotes;
+    setArticleDetailsToDisplay(temporaryObject);
+  }
+
   return (
     <>
       <PreviousNextButtons />
@@ -57,7 +69,8 @@ function IndividualArticles() {
       <VotingButtons
         articleDetailsToDisplay={articleDetailsToDisplay}
         onVoteApplied={onVoteApplied}
-        // onOptimisticVote={onOptimisticVote}
+        onOptimisticVote={onOptimisticVote}
+        onFailedVote={onFailedVote}
       />
       <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
     </>
