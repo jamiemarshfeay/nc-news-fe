@@ -10,15 +10,22 @@ function AllArticles() {
   useEffect(() => {
     fetch("https://nc-news-application-7t81.onrender.com/api/articles")
       .then((res) => {
-        setIsLoading(false);
         return res.json();
       })
       .then((data) => {
         setArticleList(data.articles);
+      })
+      .catch((err) => {
+        console.error(err);
+        setError(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }, []);
 
   if (isLoading) return <p>Loading all articles...</p>;
+  if (error) return <p>Unable to load articles.</p>;
 
   return (
     <>

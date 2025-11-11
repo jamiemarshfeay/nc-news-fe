@@ -3,7 +3,11 @@ function ArticleDetails({ articleDetailsToDisplay }) {
     <>
       <ul>
         <li>Author: {articleDetailsToDisplay.author}</li>
-        <li>Topic: {articleDetailsToDisplay.topic[0].toUpperCase() + articleDetailsToDisplay.topic.slice(1)}</li>
+        <li>
+          Topic:{" "}
+          {articleDetailsToDisplay.topic[0].toUpperCase() +
+            articleDetailsToDisplay.topic.slice(1)}
+        </li>
         <li>
           Publish Date:{" "}
           {`${articleDetailsToDisplay.created_at.slice(
