@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
+import PostCommentBox from "./PostCommentBox";
 
 function CommentSection({ articleDetailsToDisplay }) {
   const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [articleIdToSearch, setArticleIdToSearch] = useState(
-    articleDetailsToDisplay.article_id || 1
-  );
 
   useEffect(() => {
     fetch(
-      `https://nc-news-application-7t81.onrender.com/api/articles/${articleIdToSearch}/comments`
+      `https://nc-news-application-7t81.onrender.com/api/articles/${articleDetailsToDisplay.article_id}/comments`
     )
       .then((res) => {
         return res.json();
@@ -32,7 +30,9 @@ function CommentSection({ articleDetailsToDisplay }) {
 
   return (
     <>
-      <h2>Comments</h2>
+      <h2>Comment Section</h2>
+      <PostCommentBox />
+      <h3>Comments</h3>
       <ul>
         {commentsList.map((comment) => {
           return (

@@ -7,10 +7,10 @@ function Header() {
       <nav>
         <ul>
           <li>
-            <Link to="/">All Articles</Link>
+            <Link to="/articles">All Articles</Link>
           </li>
           <li>
-            <Link to="/1">Individual Articles</Link>
+            <Link to="/articles/1">Individual Articles</Link>
           </li>
         </ul>
       </nav>

@@ -7,14 +7,13 @@ import CommentSection from "./CommentSection";
 
 function IndividualArticles() {
   const { article_id } = useParams();
-  const [articleIdToSearch, setArticleIdToSearch] = useState(article_id || 1);
   const [articleDetailsToDisplay, setArticleDetailsToDisplay] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch(
-      `https://nc-news-application-7t81.onrender.com/api/articles/${articleIdToSearch}`
+      `https://nc-news-application-7t81.onrender.com/api/articles/${article_id}`
     )
       .then((res) => {
         return res.json();
@@ -30,7 +29,7 @@ function IndividualArticles() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [articleIdToSearch]);
+  }, [article_id]);
 
   if (isLoading) return <p>Loading article...</p>;
 

@@ -7,7 +7,7 @@ function ArticleList({ articleList }) {
         {articleList.map((article) => {
           return (
             <li className="article-list-items" key={article.article_id}>
-              <Link to={`/${article.article_id}`}>
+              <Link to={`/articles/${article.article_id}`}>
                 <h3>{article.title}</h3>
                 <ul className="article-details">
                   <li>
