@@ -3,6 +3,7 @@ import PostCommentBox from "./PostCommentBox";
 
 function CommentSection({ articleDetailsToDisplay }) {
   const [commentsList, setCommentsList] = useState([]);
+  const [commentCount, setCommentCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -15,6 +16,7 @@ function CommentSection({ articleDetailsToDisplay }) {
       })
       .then((data) => {
         setCommentsList(data.comments);
+        setCommentCount(data.comments.length);
       })
       .catch((err) => {
         console.error(err);
@@ -28,11 +30,33 @@ function CommentSection({ articleDetailsToDisplay }) {
   if (isLoading) return <p>Loading comments...</p>;
   if (error) return <p>Unable to load comments.</p>;
 
+  function onCommentPosted(postedComment) {
+    /// cause re-render using posted comment
+    const copyCommentsList = structuredClone(commentsList);
+    // copyCommentsList.shift();
+    copyCommentsList.unshift(postedComment);
+    setCommentsList(copyCommentsList);
+    setCommentCount(copyCommentsList.length);
+  }
+
+  function addOrCutOptimisticComment(temporaryComment) {
+    const copyCommentsList = structuredClone(commentsList);
+    temporaryComment
+      ? copyCommentsList.unshift(temporaryComment)
+      : copyCommentsList.shift();
+    setCommentsList(copyCommentsList);
+    setCommentCount(copyCommentsList.length);
+  }
+
   return (
     <>
       <h2>Comment Section</h2>
-      <PostCommentBox />
-      <h3>Comments</h3>
+      <PostCommentBox
+        articleDetailsToDisplay={articleDetailsToDisplay}
+        onCommentPosted={onCommentPosted}
+        addOrCutOptimisticComment={addOrCutOptimisticComment}
+      />
+      <h3>Comment Count: {commentCount}</h3>
       <ul>
         {commentsList.map((comment) => {
           return (
