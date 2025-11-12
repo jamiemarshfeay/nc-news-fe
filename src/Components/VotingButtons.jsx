@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 
-function VotingButtons({ articleDetailsToDisplay, onVoteApplied, onOptimisitcVote, onFailedVote }) {
+function VotingButtons({
+  articleDetailsToDisplay,
+  onVoteApplied,
+  onOptimisticVote,
+}) {
   const [localArticleVotes, setLocalArticleVotes] = useState(
     articleDetailsToDisplay.votes
   );
   const [isVoting, setIsVoting] = useState(false);
+  const [error, setError] = useState(null);
 
   function handleClick(event) {
     setIsVoting(true);
@@ -12,16 +17,13 @@ function VotingButtons({ articleDetailsToDisplay, onVoteApplied, onOptimisitcVot
 
     if (event.target.innerHTML === "Like👍") {
       incrementValue = 1;
-      console.log(incrementValue, "<<< increment value");
     }
     if (event.target.innerHTML === "Dislike👎") {
       incrementValue = -1;
-      console.log(incrementValue, "<<< increment value");
     }
 
-    setLocalArticleVotes(currentValue => currentValue + incrementValue);
-    console.log(localArticleVotes, '<<< local article votes before patching')
-    onOptimisitcVote?.(localArticleVotes);
+    let newVotes = localArticleVotes + incrementValue;
+    onOptimisticVote?.(newVotes);
 
     fetch(
       `https://nc-news-application-7t81.onrender.com/api/articles/${articleDetailsToDisplay.article_id}`,
@@ -31,8 +33,7 @@ function VotingButtons({ articleDetailsToDisplay, onVoteApplied, onOptimisitcVot
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          inc_votes: 0,
-        //   inc_votes: incrementValue,
+          inc_votes: incrementValue,
         }),
       }
     )
@@ -40,18 +41,22 @@ function VotingButtons({ articleDetailsToDisplay, onVoteApplied, onOptimisitcVot
         return res.json();
       })
       .then((data) => {
-        console.log(data.article, '<<< returned data from patch');
         const updatedArticle = data.article;
         onVoteApplied?.(updatedArticle);
+        setLocalArticleVotes(updatedArticle.votes);
       })
-      .catch(() => {
-        setLocalArticleVotes(currentValue => currentValue - incrementValue);
-        onFailedVote?.(localArticleVotes);
+      .catch((err) => {
+        newVotes = newVotes - incrementValue;
+        onOptimisticVote?.(newVotes);
+        console.error(err);
+        setError(err);
       })
       .finally(() => {
         setIsVoting(false);
       });
   }
+
+  if (error) return <h4>Apologies, you are unable to vote.</h4>
 
   return (
     <>

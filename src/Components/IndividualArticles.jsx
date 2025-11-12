@@ -44,15 +44,9 @@ function IndividualArticles() {
     setArticleDetailsToDisplay(updatedArticle);
   }
 
-  function onOptimisticVote(optimisticVotes) {
-    const temporaryObject = [...articleDetailsToDisplay];
-    temporaryObject.votes = optimisticVotes;
-    setArticleDetailsToDisplay(temporaryObject);
-  }
-
-  function onFailedVote(failedVotes) {
-    const temporaryObject = [...articleDetailsToDisplay];
-    temporaryObject.votes = failedVotes;
+  function onOptimisticVote(temporaryVotes) {
+    const temporaryObject = structuredClone(articleDetailsToDisplay);
+    temporaryObject.votes = temporaryVotes;
     setArticleDetailsToDisplay(temporaryObject);
   }
 
@@ -70,7 +64,6 @@ function IndividualArticles() {
         articleDetailsToDisplay={articleDetailsToDisplay}
         onVoteApplied={onVoteApplied}
         onOptimisticVote={onOptimisticVote}
-        onFailedVote={onFailedVote}
       />
       <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
     </>
