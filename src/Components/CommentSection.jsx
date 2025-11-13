@@ -76,6 +76,7 @@ function CommentSection({ articleDetailsToDisplay }) {
                 </ul>
               </h4>
               {comment.body}
+              {comment.author === "tickle122" && <button>Delete🗑️</button>}
             </li>
           );
         })}

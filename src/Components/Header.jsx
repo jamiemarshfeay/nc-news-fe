@@ -14,6 +14,7 @@ function Header() {
           </li>
         </ul>
       </nav>
+      <p>Logged in as tickle122.</p>
     </>
   );
 }
