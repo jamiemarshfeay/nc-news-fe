@@ -31,9 +31,7 @@ function CommentSection({ articleDetailsToDisplay }) {
   if (error) return <p>Unable to load comments.</p>;
 
   function onCommentPosted(postedComment) {
-    /// cause re-render using posted comment
     const copyCommentsList = structuredClone(commentsList);
-    // copyCommentsList.shift();
     copyCommentsList.unshift(postedComment);
     setCommentsList(copyCommentsList);
     setCommentCount(copyCommentsList.length);
