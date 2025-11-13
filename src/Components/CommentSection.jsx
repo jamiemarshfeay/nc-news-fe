@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PostCommentBox from "./PostCommentBox";
+import DeleteComment from "./DeleteComment";
 
 function CommentSection({ articleDetailsToDisplay }) {
   const [commentsList, setCommentsList] = useState([]);
@@ -46,6 +47,33 @@ function CommentSection({ articleDetailsToDisplay }) {
     setCommentCount(copyCommentsList.length);
   }
 
+  function confirmDeleteComment(index) {
+    const copyCommentsList = structuredClone(commentsList);
+    copyCommentsList.splice(index, 1);
+    setCommentsList(copyCommentsList);
+    setCommentCount(copyCommentsList.length);
+  }
+
+  function deleteOptimisticComment(comment, message) {
+    const copyCommentsList = structuredClone(commentsList);
+    const index = copyCommentsList.findIndex((element) => {
+      return element.comment_id === comment.comment_id;
+    });
+    if (index > -1) {
+      copyCommentsList.splice(index, 1, message);
+    }
+    setCommentsList(copyCommentsList);
+    setCommentCount(copyCommentsList.length);
+    return index;
+  }
+
+  function reAddOptimisticComment(comment, index) {
+    const copyCommentsList = structuredClone(commentsList);
+    copyCommentsList.splice(index, 1, comment);
+    setCommentsList(copyCommentsList);
+    setCommentCount(copyCommentsList.length);
+  }
+
   return (
     <>
       <h2>Comment Section</h2>
@@ -59,24 +87,37 @@ function CommentSection({ articleDetailsToDisplay }) {
         {commentsList.map((comment) => {
           return (
             <li key={comment.comment_id}>
-              <h4>
-                <ul>
-                  <li>Comment Author: {comment.author}</li>
-                  <li>
-                    Posted:{" "}
-                    {`${comment.created_at.slice(
-                      8,
-                      10
-                    )}/${comment.created_at.slice(
-                      5,
-                      7
-                    )}/${comment.created_at.slice(0, 4)}`}
-                  </li>
-                  <li>Likes: {comment.votes}</li>
-                </ul>
-              </h4>
-              {comment.body}
-              {comment.author === "tickle122" && <button>Delete🗑️</button>}
+              {comment.body === "Deleting comment..." ? (
+                <p>Deleting comment...</p>
+              ) : (
+                <>
+                  <h4>
+                    <ul>
+                      <li>Comment Author: {comment.author}</li>
+                      <li>
+                        Posted:{" "}
+                        {`${comment.created_at.slice(
+                          8,
+                          10
+                        )}/${comment.created_at.slice(
+                          5,
+                          7
+                        )}/${comment.created_at.slice(0, 4)}`}
+                      </li>
+                      <li>Likes: {comment.votes}</li>
+                    </ul>
+                  </h4>
+                  {comment.body}
+                  {comment.author === "tickle122" && (
+                    <DeleteComment
+                      comment={comment}
+                      deleteOptimisticComment={deleteOptimisticComment}
+                      reAddOptimisticComment={reAddOptimisticComment}
+                      confirmDeleteComment={confirmDeleteComment}
+                    />
+                  )}
+                </>
+              )}
             </li>
           );
         })}

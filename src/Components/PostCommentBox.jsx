@@ -21,7 +21,7 @@ function PostCommentBox({
       const postingBody = commentText;
       const postTimestamp = new Date(Date.now());
       const temporaryComment = {
-        comment_id: `temp-${Date.now()}`,
+        comment_id: `temp-post-${Date.now()}`,
         votes: 0,
         created_at: postTimestamp.toISOString(),
         author: "tickle122",
@@ -63,16 +63,17 @@ function PostCommentBox({
     }
   }
 
-  if (error?.message) {
-    return <p>{error.message}.</p>;
-  } else if (error) {
-    return <p>There was a problem posting your comment.</p>;
-  }
+  // if (error?.message) {
+  //   return <p>{error.message}.</p>;
+  // } else if (error) {
+  //   return <p>There was a problem posting your comment.</p>;
+  // }
 
   return (
     <>
       <h3>Post Comment Box</h3>
       <p>{emptyFieldMessage}</p>
+      {error && <p>{error.message || "There was a problem posting your comment."}</p>}
       <form id="post-comment-box" onSubmit={handleSubmit}>
         <label>
           Type Comment:
