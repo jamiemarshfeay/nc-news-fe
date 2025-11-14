@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router";
 import UtilityBar from "./UtilityBar.jsx";
 import ArticleList from "./ArticleList.jsx";
 
 function AllArticles() {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [articleList, setArticleList] = useState([]);
   const [sortBy, setSortBy] = useState("created_at");
   const [orderDir, setOrderDir] = useState("DESC");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  console.log(searchParams, '<<< search params')
 
   useEffect(() => {
     fetch(
