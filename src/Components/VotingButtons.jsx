@@ -13,6 +13,7 @@ function VotingButtons({
 
   function handleClick(event) {
     setIsVoting(true);
+    setError(null);
     let incrementValue;
 
     if (event.target.innerHTML === "Like👍") {
@@ -56,10 +57,9 @@ function VotingButtons({
       });
   }
 
-  if (error) return <h4>Apologies, you are unable to vote.</h4>
-
   return (
     <>
+      {error && <h4>Apologies, you are unable to vote.</h4>}
       <button onClick={handleClick} disabled={isVoting}>
         {isVoting ? "Saving..." : "Like👍"}
       </button>

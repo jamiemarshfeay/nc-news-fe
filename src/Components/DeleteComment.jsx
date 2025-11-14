@@ -12,13 +12,9 @@ function DeleteComment({
   function handleClick() {
     setIsDeleting(true);
     setError(null);
-    const message = {
-      comment_id: `temp-del-${Date.now()}`,
-      votes: 0,
-      created_at: "",
-      author: "",
-      body: "Deleting comment...",
-    };
+
+    const message = structuredClone(comment);
+    message.body = "Deleting comment...";
     const index = deleteOptimisticComment?.(comment, message);
 
     fetch(
@@ -28,23 +24,13 @@ function DeleteComment({
       }
     )
       .then((res) => {
-        console.log(res, "<<< response from delete request");
-        if (!res.ok) {
-          return res.json().then((data) => {
-            console.log(
-              data,
-              "<<< data back from delete request - should be undefined"
-            );
-            if (data.msg) throw new Error(data.msg);
-          });
-        }
+        if (!res.ok) throw new Error();
         confirmDeleteComment?.(index);
       })
       .catch((err) => {
-        console.log(err.message);
-        // if (!err.message === ) {
+        if (index > -1) {
           reAddOptimisticComment?.(comment, index);
-        // }
+        }
         console.error(err);
         setError(err);
       })
@@ -53,22 +39,16 @@ function DeleteComment({
       });
   }
 
-  //   if (error?.message) {
-  //     return <p>{error.message}.</p>;
-  //   } else if (error) {
-  //     return <p>Unable to delete comment.</p>;
-  //   }
-
   return (
     <>
-      {error && <p>{error.message || "Unable to delete comment."}</p>}
       <button
         id="delete-comment-button"
         onClick={handleClick}
         disabled={isDeleting}
       >
-        {isDeleting ? "Deleting..." : "Delete🗑️"}
+        Delete🗑️
       </button>
+      {error && <h4>Unable to delete comment.</h4>}
     </>
   );
 }

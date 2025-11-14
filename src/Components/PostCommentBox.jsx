@@ -3,7 +3,7 @@ import { useState } from "react";
 function PostCommentBox({
   articleDetailsToDisplay,
   onCommentPosted,
-  addOrCutOptimisticComment,
+  addOrCutOptimisticCommentPost,
 }) {
   const [commentText, setCommentText] = useState("");
   const [isPosting, setIsPosting] = useState(false);
@@ -12,6 +12,7 @@ function PostCommentBox({
 
   function handleSubmit(event) {
     event.preventDefault();
+    setError(null);
     if (commentText.length <= 0) {
       setEmptyFieldMessage("Cannot submit an empty field. Please try again.");
     } else {
@@ -28,7 +29,7 @@ function PostCommentBox({
         body: postingBody,
         article_id: articleDetailsToDisplay.article_id,
       };
-      addOrCutOptimisticComment?.(temporaryComment);
+      addOrCutOptimisticCommentPost?.(temporaryComment);
 
       fetch(
         `https://nc-news-application-7t81.onrender.com/api/articles/${articleDetailsToDisplay.article_id}/comments`,
@@ -44,36 +45,30 @@ function PostCommentBox({
         }
       )
         .then((res) => {
+          if (!res.ok) throw new Error();
           return res.json();
         })
         .then((data) => {
-          if (data.msg) throw new Error(data.msg);
           const postedComment = data.comment;
           onCommentPosted?.(postedComment);
-          setCommentText("");
         })
         .catch((err) => {
-          addOrCutOptimisticComment?.();
+          addOrCutOptimisticCommentPost?.();
           console.error(err);
           setError(err);
         })
         .finally(() => {
           setIsPosting(false);
+          setCommentText("");
         });
     }
   }
-
-  // if (error?.message) {
-  //   return <p>{error.message}.</p>;
-  // } else if (error) {
-  //   return <p>There was a problem posting your comment.</p>;
-  // }
 
   return (
     <>
       <h3>Post Comment Box</h3>
       <p>{emptyFieldMessage}</p>
-      {error && <p>{error.message || "There was a problem posting your comment."}</p>}
+      {error && <p>There was a problem posting your comment.</p>}
       <form id="post-comment-box" onSubmit={handleSubmit}>
         <label>
           Type Comment:

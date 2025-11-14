@@ -4,7 +4,6 @@ import DeleteComment from "./DeleteComment";
 
 function CommentSection({ articleDetailsToDisplay }) {
   const [commentsList, setCommentsList] = useState([]);
-  const [commentCount, setCommentCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +16,6 @@ function CommentSection({ articleDetailsToDisplay }) {
       })
       .then((data) => {
         setCommentsList(data.comments);
-        setCommentCount(data.comments.length);
       })
       .catch((err) => {
         console.error(err);
@@ -35,43 +33,42 @@ function CommentSection({ articleDetailsToDisplay }) {
     const copyCommentsList = structuredClone(commentsList);
     copyCommentsList.unshift(postedComment);
     setCommentsList(copyCommentsList);
-    setCommentCount(copyCommentsList.length);
   }
 
-  function addOrCutOptimisticComment(temporaryComment) {
-    const copyCommentsList = structuredClone(commentsList);
-    temporaryComment
-      ? copyCommentsList.unshift(temporaryComment)
-      : copyCommentsList.shift();
-    setCommentsList(copyCommentsList);
-    setCommentCount(copyCommentsList.length);
+  function addOrCutOptimisticCommentPost(temporaryComment) {
+    setCommentsList((currentList) => {
+      const copyCommentsList = structuredClone(currentList);
+      temporaryComment
+        ? copyCommentsList.unshift(temporaryComment)
+        : copyCommentsList.shift();
+      return copyCommentsList;
+    });
   }
 
   function confirmDeleteComment(index) {
     const copyCommentsList = structuredClone(commentsList);
     copyCommentsList.splice(index, 1);
     setCommentsList(copyCommentsList);
-    setCommentCount(copyCommentsList.length);
   }
 
   function deleteOptimisticComment(comment, message) {
     const copyCommentsList = structuredClone(commentsList);
-    const index = copyCommentsList.findIndex((element) => {
-      return element.comment_id === comment.comment_id;
+    const index = copyCommentsList.findIndex((listItem) => {
+      return listItem.comment_id === comment.comment_id;
     });
     if (index > -1) {
       copyCommentsList.splice(index, 1, message);
     }
     setCommentsList(copyCommentsList);
-    setCommentCount(copyCommentsList.length);
     return index;
   }
 
   function reAddOptimisticComment(comment, index) {
     const copyCommentsList = structuredClone(commentsList);
-    copyCommentsList.splice(index, 1, comment);
+    if (index > -1) {
+      copyCommentsList.splice(index, 1, comment);
+    }
     setCommentsList(copyCommentsList);
-    setCommentCount(copyCommentsList.length);
   }
 
   return (
@@ -80,43 +77,37 @@ function CommentSection({ articleDetailsToDisplay }) {
       <PostCommentBox
         articleDetailsToDisplay={articleDetailsToDisplay}
         onCommentPosted={onCommentPosted}
-        addOrCutOptimisticComment={addOrCutOptimisticComment}
+        addOrCutOptimisticCommentPost={addOrCutOptimisticCommentPost}
       />
-      <h3>Comment Count: {commentCount}</h3>
+      <h3>Comment Count: {commentsList.length}</h3>
       <ul>
         {commentsList.map((comment) => {
           return (
             <li key={comment.comment_id}>
-              {comment.body === "Deleting comment..." ? (
-                <p>Deleting comment...</p>
-              ) : (
-                <>
-                  <h4>
-                    <ul>
-                      <li>Comment Author: {comment.author}</li>
-                      <li>
-                        Posted:{" "}
-                        {`${comment.created_at.slice(
-                          8,
-                          10
-                        )}/${comment.created_at.slice(
-                          5,
-                          7
-                        )}/${comment.created_at.slice(0, 4)}`}
-                      </li>
-                      <li>Likes: {comment.votes}</li>
-                    </ul>
-                  </h4>
-                  {comment.body}
-                  {comment.author === "tickle122" && (
-                    <DeleteComment
-                      comment={comment}
-                      deleteOptimisticComment={deleteOptimisticComment}
-                      reAddOptimisticComment={reAddOptimisticComment}
-                      confirmDeleteComment={confirmDeleteComment}
-                    />
-                  )}
-                </>
+              <h4>
+                <ul>
+                  <li>Comment Author: {comment.author}</li>
+                  <li>
+                    Posted:{" "}
+                    {`${comment.created_at.slice(
+                      8,
+                      10
+                    )}/${comment.created_at.slice(
+                      5,
+                      7
+                    )}/${comment.created_at.slice(0, 4)}`}
+                  </li>
+                  <li>Likes: {comment.votes}</li>
+                </ul>
+              </h4>
+              {comment.body}
+              {comment.author === "tickle122" && (
+                <DeleteComment
+                  comment={comment}
+                  deleteOptimisticComment={deleteOptimisticComment}
+                  reAddOptimisticComment={reAddOptimisticComment}
+                  confirmDeleteComment={confirmDeleteComment}
+                />
               )}
             </li>
           );
