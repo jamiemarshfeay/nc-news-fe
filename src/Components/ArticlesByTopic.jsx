@@ -6,13 +6,18 @@ import UtilityBar from "./UtilityBar.jsx";
 function ArticlesByTopic() {
   const { slug } = useParams();
   const [articlesToDisplay, setArticlesToDisplay] = useState([]);
+  const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const query = `?topic=${slug}`;
+  function applyQuery(type, value) {
+    setQuery(`&${type}=${value}`);
+  }
 
   useEffect(() => {
-    fetch(`https://nc-news-application-7t81.onrender.com/api/articles${query}`)
+    fetch(
+      `https://nc-news-application-7t81.onrender.com/api/articles?topic=${slug}${query}`
+    )
       .then((res) => {
         return res.json();
       })
@@ -27,7 +32,7 @@ function ArticlesByTopic() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [slug]);
+  }, [slug, query]);
 
   if (isLoading) return <p>Loading articles...</p>;
 
@@ -40,7 +45,7 @@ function ArticlesByTopic() {
   return (
     <>
       <h2>{`Articles to do with ${slug[0].toUpperCase() + slug.slice(1)}`}</h2>
-      <UtilityBar />
+      <UtilityBar applyQuery={applyQuery} />
       <ArticleList articleList={articlesToDisplay} />
     </>
   );

@@ -4,8 +4,13 @@ import ArticleList from "./ArticleList.jsx";
 
 function AllArticles() {
   const [articleList, setArticleList] = useState([]);
+  // const [query, setQuery] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  function applyQuery(type, value) {
+    // setQuery(`&${type}=${value}`)
+  }
 
   useEffect(() => {
     fetch("https://nc-news-application-7t81.onrender.com/api/articles")
@@ -30,7 +35,7 @@ function AllArticles() {
   return (
     <>
       <h2>All Articles</h2>
-      <UtilityBar />
+      <UtilityBar applyQuery={applyQuery} />
       <ArticleList articleList={articleList} />
     </>
   );

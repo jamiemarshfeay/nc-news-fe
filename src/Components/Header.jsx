@@ -4,6 +4,7 @@ function Header() {
   return (
     <>
       <h1>NC News</h1>
+      <p>Logged in as tickle122.</p>
       <nav>
         <ul>
           <li>
@@ -17,7 +18,6 @@ function Header() {
           </li>
         </ul>
       </nav>
-      <p>Logged in as tickle122.</p>
     </>
   );
 }
