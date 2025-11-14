@@ -4,16 +4,15 @@ import ArticleList from "./ArticleList.jsx";
 
 function AllArticles() {
   const [articleList, setArticleList] = useState([]);
-  // const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderDir, setOrderDir] = useState("DESC");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function applyQuery(type, value) {
-    // setQuery(`&${type}=${value}`)
-  }
-
   useEffect(() => {
-    fetch("https://nc-news-application-7t81.onrender.com/api/articles")
+    fetch(
+      `https://nc-news-application-7t81.onrender.com/api/articles?sort_by=${sortBy}&order=${orderDir}`
+    )
       .then((res) => {
         return res.json();
       })
@@ -27,7 +26,13 @@ function AllArticles() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, []);
+  }, [sortBy, orderDir]);
+
+  function applyQuery(type, value) {
+    setIsLoading(true);
+    if (type === "sort_by") setSortBy(value);
+    if (type === "order") setOrderDir(value);
+  }
 
   if (isLoading) return <p>Loading all articles...</p>;
   if (error) return <p>Unable to load articles.</p>;
@@ -35,7 +40,7 @@ function AllArticles() {
   return (
     <>
       <h2>All Articles</h2>
-      <UtilityBar applyQuery={applyQuery} />
+      <UtilityBar applyQuery={applyQuery} sortBy={sortBy} orderDir={orderDir} />
       <ArticleList articleList={articleList} />
     </>
   );

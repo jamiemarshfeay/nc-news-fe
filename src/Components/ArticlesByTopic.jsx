@@ -6,23 +6,19 @@ import UtilityBar from "./UtilityBar.jsx";
 function ArticlesByTopic() {
   const { slug } = useParams();
   const [articlesToDisplay, setArticlesToDisplay] = useState([]);
-  const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState("created_at");
+  const [orderDir, setOrderDir] = useState("DESC");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  function applyQuery(type, value) {
-    setQuery(`&${type}=${value}`);
-  }
-
   useEffect(() => {
     fetch(
-      `https://nc-news-application-7t81.onrender.com/api/articles?topic=${slug}${query}`
+      `https://nc-news-application-7t81.onrender.com/api/articles?topic=${slug}&sort_by=${sortBy}&order=${orderDir}`
     )
       .then((res) => {
         return res.json();
       })
       .then((data) => {
-        if (data.msg) throw new Error(data.msg);
         setArticlesToDisplay(data.articles);
       })
       .catch((err) => {
@@ -32,20 +28,21 @@ function ArticlesByTopic() {
       .finally(() => {
         setIsLoading(false);
       });
-  }, [slug, query]);
+  }, [slug, sortBy, orderDir]);
+
+  function applyQuery(type, value) {
+    setIsLoading(true);
+    if (type === "sort_by") setSortBy(value);
+    if (type === "order") setOrderDir(value);
+  }
 
   if (isLoading) return <p>Loading articles...</p>;
-
-  if (error?.message) {
-    return <p>{error.message}.</p>;
-  } else if (error) {
-    return <p>Unable to load articles.</p>;
-  }
+  if (error) return <p>Unable to load articles.</p>;
 
   return (
     <>
       <h2>{`Articles to do with ${slug[0].toUpperCase() + slug.slice(1)}`}</h2>
-      <UtilityBar applyQuery={applyQuery} />
+      <UtilityBar applyQuery={applyQuery} sortBy={sortBy} orderDir={orderDir} />
       <ArticleList articleList={articlesToDisplay} />
     </>
   );

@@ -1,7 +1,8 @@
-function UtilityBar({ applyQuery }) {
+function UtilityBar({ applyQuery, sortBy, orderDir }) {
   const columns = {
     Date: "created_at",
     Likes: "votes",
+    "Comment Count": "comment_count",
     Author: "author",
     Title: "title",
   };
@@ -22,7 +23,7 @@ function UtilityBar({ applyQuery }) {
     <>
       <label htmlFor="sort-dropdown">
         Sort By:
-        <select id="sort-dropdown" onChange={handleChange}>
+        <select id="sort-dropdown" onChange={handleChange} value={sortBy}>
           {Object.keys(columns).map((option) => {
             return (
               <option value={columns[option]} key={columns[option]}>
@@ -34,7 +35,7 @@ function UtilityBar({ applyQuery }) {
       </label>
       <label htmlFor="order-dropdown">
         Order:
-        <select id="order-dropdown" onChange={handleChange}>
+        <select id="order-dropdown" onChange={handleChange} value={orderDir}>
           {Object.keys(orders).map((order) => {
             return (
               <option value={orders[order]} key={orders[order]}>
@@ -44,10 +45,6 @@ function UtilityBar({ applyQuery }) {
           })}
         </select>
       </label>
-      <p>
-        Hi from utility bar! This will include a 'Sort By' dropdown and
-        'ASC/DESC Order Dropdown'.
-      </p>
     </>
   );
 }
