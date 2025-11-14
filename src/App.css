@@ -38,3 +38,7 @@ img {
   inline-size: 100%;
   min-block-size: 1rem;
 }
+
+.topic-list-items {
+  border: solid 1px red;
+}

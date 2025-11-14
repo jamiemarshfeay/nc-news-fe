@@ -12,6 +12,9 @@ function Header() {
           <li>
             <Link to="/articles/1">Individual Articles</Link>
           </li>
+          <li>
+            <Link to="/topics">List of Topics</Link>
+          </li>
         </ul>
       </nav>
       <p>Logged in as tickle122.</p>
