@@ -51,7 +51,11 @@ function IndividualArticles() {
 
   return (
     <>
-      <PreviousNextButtons articleDetailsToDisplay={articleDetailsToDisplay} />
+      <PreviousNextButtons
+        articleDetailsToDisplay={articleDetailsToDisplay}
+        isLoading={isLoading}
+        setIsLoading={setIsLoading}
+      />
       <h2>{articleDetailsToDisplay.title}</h2>
       <img
         src={articleDetailsToDisplay.article_img_url}
