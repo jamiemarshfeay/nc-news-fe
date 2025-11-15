@@ -21,6 +21,7 @@ function ArticlesByTopic() {
         return res.json();
       })
       .then((data) => {
+        if (data.msg) throw new Error(data.msg);
         setArticlesToDisplay(data.articles);
       })
       .catch((err) => {
@@ -42,7 +43,22 @@ function ArticlesByTopic() {
   }
 
   if (isLoading) return <p>Loading articles...</p>;
-  if (error) return <p>Unable to load articles.</p>;
+
+  if (error?.message && error.message !== "Failed to fetch") {
+    return (
+      <p>
+        {error.message}. Valid endpoints include '/coding', '/football', and
+        '/cooking'.
+      </p>
+    );
+  } else if (error) {
+    return (
+      <p>
+        Unable to load articles. Please check your connection, refresh, and try
+        again.
+      </p>
+    );
+  }
 
   return (
     <>

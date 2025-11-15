@@ -33,10 +33,15 @@ function IndividualArticles() {
 
   if (isLoading) return <p>Loading article...</p>;
 
-  if (error?.message) {
-    return <p>{error.message}.</p>;
+  if (error?.message && error.message !== "Failed to fetch") {
+    return <p>{error.message}. Valid endpoints include '/' followed by the numbers 1 through 37.</p>;
   } else if (error) {
-    return <p>Unable to load article.</p>;
+    return (
+      <p>
+        Unable to load article. Please check your connection, refresh, and try
+        again.
+      </p>
+    );
   }
 
   function onVoteApplied(updatedArticle) {

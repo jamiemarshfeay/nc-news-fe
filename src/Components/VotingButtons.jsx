@@ -59,7 +59,12 @@ function VotingButtons({
 
   return (
     <>
-      {error && <h4>Apologies, you are unable to vote.</h4>}
+      {error && (
+        <h4>
+          Apologies, you are unable to vote. Please check your connection,
+          refresh, and try again.
+        </h4>
+      )}
       <button onClick={handleClick} disabled={isVoting}>
         {isVoting ? "Saving..." : "Like👍"}
       </button>

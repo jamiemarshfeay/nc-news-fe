@@ -48,7 +48,12 @@ function DeleteComment({
       >
         Delete🗑️
       </button>
-      {error && <h4>Unable to delete comment.</h4>}
+      {error && (
+        <h4>
+          Unable to delete comment. Please check your connection, refresh, and
+          try again.
+        </h4>
+      )}
     </>
   );
 }

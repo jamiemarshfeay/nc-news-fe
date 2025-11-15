@@ -4,6 +4,7 @@ import AllArticles from "./Components/AllArticles.jsx";
 import IndividualArticles from "./Components/IndividualArticles.jsx";
 import TopicsList from "./Components/TopicsList.jsx";
 import ArticlesByTopic from "./Components/ArticlesByTopic.jsx";
+import NotFound from "./Components/NotFound.jsx";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         ></Route>
         <Route path="/topics" element={<TopicsList />}></Route>
         <Route path="/topics/:slug" element={<ArticlesByTopic />}></Route>
+        <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </>
   );

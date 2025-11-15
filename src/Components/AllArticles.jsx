@@ -41,7 +41,14 @@ function AllArticles() {
   }
 
   if (isLoading) return <p>Loading all articles...</p>;
-  if (error) return <p>Unable to load articles.</p>;
+  if (error) {
+    return (
+      <p>
+        Unable to load articles. Please check your connection, refresh, and try
+        again.
+      </p>
+    );
+  }
 
   return (
     <>

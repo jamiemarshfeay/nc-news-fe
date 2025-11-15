@@ -24,14 +24,23 @@ function TopicsList() {
   }, []);
 
   if (isLoading) return <p>Loading all topics...</p>;
-  if (error) return <p>Unable to load topics.</p>;
+  if (error) {
+    return (
+      <p>
+        Unable to load topics. Please check your connection, refresh, and try
+        again.
+      </p>
+    );
+  }
 
   return (
     <>
       <h2>All Topics</h2>
       <ul id="topics-list">
         {topicList.map((topic) => {
-          const image = topic.img_url || null;
+          const image =
+            topic.img_url ||
+            "https://images.pexels.com/photos/6424586/pexels-photo-6424586.jpeg?w=700&h=700";
           return (
             <Link to={`/topics/${topic.slug}`} key={topic.slug}>
               <li className="topic-list-items">

@@ -27,7 +27,14 @@ function CommentSection({ articleDetailsToDisplay }) {
   }, []);
 
   if (isLoading) return <p>Loading comments...</p>;
-  if (error) return <p>Unable to load comments.</p>;
+  if (error) {
+    return (
+      <p>
+        Unable to load comments. Please check your connection, refresh, and try
+        again.
+      </p>
+    );
+  }
 
   function onCommentPosted(postedComment) {
     const copyCommentsList = structuredClone(commentsList);
