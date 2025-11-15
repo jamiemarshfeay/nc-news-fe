@@ -34,7 +34,12 @@ function IndividualArticles() {
   if (isLoading) return <p>Loading article...</p>;
 
   if (error?.message && error.message !== "Failed to fetch") {
-    return <p>{error.message}. Valid endpoints include '/' followed by the numbers 1 through 37.</p>;
+    return (
+      <p>
+        {error.message}. Valid endpoints include '/' followed by the numbers 1
+        through 37.
+      </p>
+    );
   } else if (error) {
     return (
       <p>

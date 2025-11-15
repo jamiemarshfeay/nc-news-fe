@@ -20,6 +20,7 @@ function AllArticles() {
         return res.json();
       })
       .then((data) => {
+        if (data.msg) throw new Error(data.msg);
         setArticleList(data.articles);
       })
       .catch((err) => {
@@ -41,7 +42,16 @@ function AllArticles() {
   }
 
   if (isLoading) return <p>Loading all articles...</p>;
-  if (error) {
+  if (error?.message && error.message !== "Failed to fetch") {
+    return (
+      <p>
+        {error.message}. Valid queries include 'sort_by' and 'order', the first
+        of which will take values 'created_at', 'votes', 'comment_count',
+        'author', and 'title'. The 'order' query will take values 'ASC' or
+        'DESC'.
+      </p>
+    );
+  } else if (error) {
     return (
       <p>
         Unable to load articles. Please check your connection, refresh, and try

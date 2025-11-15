@@ -48,7 +48,9 @@ function ArticlesByTopic() {
     return (
       <p>
         {error.message}. Valid endpoints include '/coding', '/football', and
-        '/cooking'.
+        '/cooking'. Valid queries include 'sort_by' and 'order', the first of
+        which will take values 'created_at', 'votes', 'comment_count', 'author',
+        and 'title'. The 'order' query will take values 'ASC' or 'DESC'.
       </p>
     );
   } else if (error) {
