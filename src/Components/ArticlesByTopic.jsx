@@ -1,15 +1,17 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useSearchParams } from "react-router";
 import ArticleList from "./ArticleList.jsx";
 import UtilityBar from "./UtilityBar.jsx";
 
 function ArticlesByTopic() {
   const { slug } = useParams();
   const [articlesToDisplay, setArticlesToDisplay] = useState([]);
-  const [sortBy, setSortBy] = useState("created_at");
-  const [orderDir, setOrderDir] = useState("DESC");
+  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const sortBy = searchParams.get("sort_by") || "created_at";
+  const orderDir = searchParams.get("order") || "DESC";
 
   useEffect(() => {
     fetch(
@@ -32,8 +34,11 @@ function ArticlesByTopic() {
 
   function applyQuery(type, value) {
     setIsLoading(true);
-    if (type === "sort_by") setSortBy(value);
-    if (type === "order") setOrderDir(value);
+    setSearchParams((currentParams) => {
+      const copyParams = new URLSearchParams(currentParams);
+      copyParams.set(type, value);
+      return copyParams;
+    });
   }
 
   if (isLoading) return <p>Loading articles...</p>;
