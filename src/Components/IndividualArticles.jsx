@@ -51,7 +51,7 @@ function IndividualArticles() {
 
   return (
     <>
-      <PreviousNextButtons />
+      <PreviousNextButtons articleDetailsToDisplay={articleDetailsToDisplay} />
       <h2>{articleDetailsToDisplay.title}</h2>
       <img
         src={articleDetailsToDisplay.article_img_url}
