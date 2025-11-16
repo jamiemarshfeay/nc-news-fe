@@ -1,16 +1,52 @@
-# React + Vite
+# NC News Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Deployed App  
+https://jcmf-nc-news-app.netlify.app  
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Project Summary
 
-## React Compiler
+NC News is an interactive news application that allows users to browse, sort, and read articles across a range of topics. Each article page includes comments, user voting functionality, and dynamic updates powered by the RESTful API. The frontend is built with React and communicates with the NC News backend hosted on Render.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Users can:
+- Browse all articles  
+- Filter articles by topic  
+- Sort and order results  
+- Read full article content  
+- View, post, and delete comments  
+- Vote articles up or down with optimistic updates  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Backend Repository
+
+https://github.com/jamiemarshfeay/nc-news-BE
+
+---
+
+### Minimum Versions Required
+
+Before running the project locally, ensure you have the following installed:  
+- **Node.js:** v24.9.0   
+
+You can confirm your version with:  
+`node -v`  
+
+---
+
+### Running the Project Locally
+
+- Clone the repository:  
+`git clone https://github.com/jamiemarshfeay/nc-news-fe.git`
+- Navigate into the project folder:  
+`cd nc-news-fe`
+- Install all dependencies:  
+`npm install`
+- Start the development server:  
+`npm run dev`  
+This will start the app on a local development URL.
+
+---
+
+This portfolio project was created as part of a Digital Skills Bootcamp in Software Engineering provided by [Northcoders](https://northcoders.com/).
