@@ -4,17 +4,17 @@ function Header() {
   return (
     <>
       <h1>NC News</h1>
-      <p>Logged in as tickle122.</p>
+      <p id="login-user-message">Logged in as tickle122.</p>
       <nav>
-        <ul>
-          <li>
-            <Link to="/articles">All Articles</Link>
+        <ul id="nav-bar">
+          <li className="nav-bar-item">
+            <Link to="/articles" className="nav-bar-link">All Articles</Link>
           </li>
-          <li>
-            <Link to="/articles/1">Individual Articles</Link>
+          <li className="nav-bar-item">
+            <Link to="/articles/1" className="nav-bar-link">Individual Articles</Link>
           </li>
-          <li>
-            <Link to="/topics">List of Topics</Link>
+          <li className="nav-bar-item">
+            <Link to="/topics" className="nav-bar-link">List of Topics</Link>
           </li>
         </ul>
       </nav>
