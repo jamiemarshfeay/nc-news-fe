@@ -5,7 +5,7 @@ function Header() {
     <header className="header">
       <h1>NC News</h1>
       <nav className="header-nav">
-        <ul >
+        <ul>
           <li>
             <Link to="/articles">All Articles</Link>
           </li>
