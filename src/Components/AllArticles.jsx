@@ -61,11 +61,17 @@ function AllArticles() {
   }
 
   return (
-    <>
-      <h2>All Articles</h2>
-      <UtilityBar applyQuery={applyQuery} sortBy={sortBy} orderDir={orderDir} />
+    <section className="all-articles">
+      <div>
+        <h2>All Articles</h2>
+        <UtilityBar
+          applyQuery={applyQuery}
+          sortBy={sortBy}
+          orderDir={orderDir}
+        />
+      </div>
       <ArticleList articleList={articleList} />
-    </>
+    </section>
   );
 }
 

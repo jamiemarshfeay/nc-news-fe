@@ -3,16 +3,16 @@ import { Link } from "react-router";
 function ArticleList({ articleList }) {
   return (
     <>
-      <ul id="all-articles-list">
+      <ul id="article-list">
         {articleList.map((article) => {
           return (
-            <Link
-              to={`/articles/${article.article_id}`}
-              key={article.article_id}
-            >
-              <li className="article-list-items">
+            <li>
+              <Link
+                to={`/articles/${article.article_id}`}
+                key={article.article_id}
+              >
                 <h3>{article.title}</h3>
-                <ul className="article-details">
+                <ul>
                   <li>
                     Topic:{" "}
                     {article.topic[0].toUpperCase() + article.topic.slice(1)}
@@ -29,9 +29,10 @@ function ArticleList({ articleList }) {
                     )}/${article.created_at.slice(0, 4)}`}
                   </li>
                   <li>Likes: {article.votes}</li>
+                  <li>Comments: {article.comment_count}</li>
                 </ul>
-              </li>
-            </Link>
+              </Link>
+            </li>
           );
         })}
       </ul>

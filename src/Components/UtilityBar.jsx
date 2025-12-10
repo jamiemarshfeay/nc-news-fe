@@ -20,10 +20,10 @@ function UtilityBar({ applyQuery, sortBy, orderDir }) {
   }
 
   return (
-    <>
+    <section>
       <label htmlFor="sort-dropdown">
         Sort By:
-        <select id="sort-dropdown" onChange={handleChange} value={sortBy}>
+        <select onChange={handleChange} value={sortBy}>
           {Object.keys(columns).map((option) => {
             return (
               <option value={columns[option]} key={columns[option]}>
@@ -35,7 +35,7 @@ function UtilityBar({ applyQuery, sortBy, orderDir }) {
       </label>
       <label htmlFor="order-dropdown">
         Order:
-        <select id="order-dropdown" onChange={handleChange} value={orderDir}>
+        <select onChange={handleChange} value={orderDir}>
           {Object.keys(orders).map((order) => {
             return (
               <option value={orders[order]} key={orders[order]}>
@@ -45,7 +45,7 @@ function UtilityBar({ applyQuery, sortBy, orderDir }) {
           })}
         </select>
       </label>
-    </>
+    </section>
   );
 }
 
