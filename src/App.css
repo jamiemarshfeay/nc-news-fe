@@ -143,8 +143,20 @@ button {
 
 #article-list {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  #article-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  #article-list {
+    grid-template-columns: 1fr;
+  }
 }
 
 .article-list-item {
@@ -169,17 +181,17 @@ button {
 }
 
 .article-list-link h3 {
-  border: solid 2px var(--color-primary-dark);
+  color: var(--color-bg);
+  margin: 1rem;
+}
+
+.article-list-link img {
+  max-width: 90%;
   border-radius: 5px;
-  padding: 0.5rem;
-  background-color: var(--color-secondary);
-  color: var(--color-text);
-  margin: 0.5rem;
 }
 
 .article-list-link:hover h3 {
-  background-color: var(--color-primary);
-  color: var(--color-bg);
+  color: var(--color-text);
 }
 
 .article-list-link ul {

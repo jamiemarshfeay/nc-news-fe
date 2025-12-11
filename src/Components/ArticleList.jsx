@@ -13,6 +13,7 @@ function ArticleList({ articleList }) {
                 className="article-list-link"
               >
                 <h3>{article.title}</h3>
+                <img src={article.article_img_url} alt="" role="presentation" />
                 <ul>
                   <li>
                     Topic:{" "}
