@@ -6,10 +6,11 @@ function ArticleList({ articleList }) {
       <ul id="article-list">
         {articleList.map((article) => {
           return (
-            <li>
+            <li className="article-list-item">
               <Link
                 to={`/articles/${article.article_id}`}
                 key={article.article_id}
+                className="article-list-link"
               >
                 <h3>{article.title}</h3>
                 <ul>
