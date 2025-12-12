@@ -255,7 +255,8 @@ button, select {
   border-radius: 5px;
   border: solid 2px var(--color-primary-dark);
   font-size: 16px;
-  color: var(--color-primary-dark);
+  color: var(--color-bg);
+  background-color: var(--color-primary);
 }
 
 .indiv-article nav {
@@ -270,6 +271,11 @@ button, select {
 .indiv-article nav button {
   padding: 0.5rem;
   min-width: 131px;
+}
+
+.indiv-article nav button:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
 }
 
 #previous-article {
@@ -295,6 +301,11 @@ button, select {
   border-radius: 5px;
   margin: 0.5rem 0 3rem;
 }
+
+.indiv-article  {
+  
+}
+
 
 /* ******************************** ^indiv articles*/
 
