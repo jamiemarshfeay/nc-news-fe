@@ -41,10 +41,11 @@ function AllArticles() {
     });
   }
 
-  if (isLoading) return <p>Loading all articles...</p>;
+  if (isLoading)
+    return <p className="loading-and-error">Loading all articles...</p>;
   if (error?.message && error.message !== "Failed to fetch") {
     return (
-      <p>
+      <p className="loading-and-error">
         {error.message}. Valid queries include 'sort_by' and 'order', the first
         of which will take values 'created_at', 'votes', 'comment_count',
         'author', and 'title'. The 'order' query will take values 'ASC' or
@@ -53,7 +54,7 @@ function AllArticles() {
     );
   } else if (error) {
     return (
-      <p>
+      <p className="loading-and-error">
         Unable to load articles. Please check your connection, refresh, and try
         again.
       </p>

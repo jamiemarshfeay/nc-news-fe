@@ -80,7 +80,7 @@ function CommentSection({ articleDetailsToDisplay }) {
 
   return (
     <>
-      <h2>Comment Section</h2>
+      <h3>Comment Section</h3>
       <PostCommentBox
         articleDetailsToDisplay={articleDetailsToDisplay}
         onCommentPosted={onCommentPosted}

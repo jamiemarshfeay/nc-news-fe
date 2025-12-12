@@ -246,6 +246,64 @@ button, select {
 
 /* ******************************** ^all articles*/
 
+.indiv-article {
+  display: flex;
+  flex-direction: column;
+}
 
+.indiv-article button {
+  border-radius: 5px;
+  border: solid 2px var(--color-primary-dark);
+  font-size: 16px;
+  color: var(--color-primary-dark);
+}
+
+.indiv-article nav {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.indiv-article a {
+  margin: 1rem;
+}
+
+.indiv-article nav button {
+  padding: 0.5rem;
+  min-width: 131px;
+}
+
+#previous-article {
+  grid-column: 1;
+  justify-self: start;
+}
+
+#next-article {
+  grid-column: 2;
+  justify-self: end;
+}
+
+.indiv-article h2 {
+  font-size: 32px;
+  color: var(--color-primary-dark);
+  margin: 0.5rem 2rem 1rem;
+  text-align: center;
+}
+
+.indiv-article img {
+  max-width: 75%;
+  align-self: center;
+  border-radius: 5px;
+  margin: 0.5rem 0 3rem;
+}
 
 /* ******************************** ^indiv articles*/
+
+.loading-and-error {
+  color: var(--color-primary-dark);
+  font-size: 18px;
+  text-align: center;
+  padding-top: 3rem;
+  font-weight: 600;
+}
+
+/* ******************************** ^loading and error*/
