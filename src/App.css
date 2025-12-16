@@ -298,14 +298,32 @@ button, select {
 .indiv-article img {
   max-width: 75%;
   align-self: center;
+  border: solid 4px var(--color-primary-dark);
   border-radius: 5px;
   margin: 0.5rem 0 3rem;
 }
 
-.indiv-article  {
-  
+.indiv-article div {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0rem 2rem 3rem;
 }
 
+.indiv-article div ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.voting-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.voting-buttons button {
+  max-width: 30%;
+}
 
 /* ******************************** ^indiv articles*/
 

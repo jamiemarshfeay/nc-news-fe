@@ -69,7 +69,7 @@ function PostCommentBox({
       <h3>Post Comment Box</h3>
       <p>{emptyFieldMessage}</p>
       {error && (
-        <p>
+        <p className="loading-and-error">
           There was a problem posting your comment. Please check your
           connection, refresh, and try again.
         </p>

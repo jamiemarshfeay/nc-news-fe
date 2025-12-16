@@ -19,9 +19,8 @@ function ArticleDetails({ articleDetailsToDisplay }) {
           )}/${articleDetailsToDisplay.created_at.slice(0, 4)}`}
         </li>
         <li>Likes: {articleDetailsToDisplay.votes}</li>
+        <li>Article ID: {articleDetailsToDisplay.article_id}</li>
       </ul>
-      <p>{articleDetailsToDisplay.body}</p>
-      <p>Article ID: {articleDetailsToDisplay.article_id}</p>
     </>
   );
 }

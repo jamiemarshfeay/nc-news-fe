@@ -49,7 +49,7 @@ function DeleteComment({
         Delete🗑️
       </button>
       {error && (
-        <h4>
+        <h4 className="loading-and-error">
           Unable to delete comment. Please check your connection, refresh, and
           try again.
         </h4>
