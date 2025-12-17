@@ -79,8 +79,7 @@ function CommentSection({ articleDetailsToDisplay }) {
   }
 
   return (
-    <>
-      <h3>Comment Section</h3>
+    <section className="comment-section">
       <PostCommentBox
         articleDetailsToDisplay={articleDetailsToDisplay}
         onCommentPosted={onCommentPosted}
@@ -120,7 +119,7 @@ function CommentSection({ articleDetailsToDisplay }) {
           );
         })}
       </ul>
-    </>
+    </section>
   );
 }
 

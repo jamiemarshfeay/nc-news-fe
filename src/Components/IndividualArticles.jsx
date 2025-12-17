@@ -80,7 +80,7 @@ function IndividualArticles() {
           onOptimisticVote={onOptimisticVote}
         />
       </div>
-      <p>{articleDetailsToDisplay.body}</p>
+      <p id="indiv-article-body">{articleDetailsToDisplay.body}</p>
       <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
     </section>
   );

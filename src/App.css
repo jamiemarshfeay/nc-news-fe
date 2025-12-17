@@ -337,7 +337,6 @@ select {
 }
 
 .voting-buttons button {
-  /* background-color: var(--color-secondary); */
   min-width: 100px;
   padding: 0.25rem;
 }
@@ -345,6 +344,37 @@ select {
 .voting-buttons button:hover {
   background-color: var(--color-secondary);
   color: var(--color-text);
+}
+
+#indiv-article-body {
+  margin: 0 2rem 1rem;
+  border: 2px solid var(--color-primary-dark);
+  border-radius: 8px;
+  padding: 1rem;
+  color: var(--color-primary-dark);
+}
+
+.comment-section {
+  margin: 0 2rem 1rem;
+  color: var(--color-primary-dark);
+}
+
+#post-comment-box {
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-primary-dark);
+  border-radius: 8px;
+  padding: 0.5rem;
+  color: var(--color-bg);
+  font-weight: 600;
+}
+
+#post-comment-box input {
+  border-radius: 5px;
+  width: 70%;
+}
+
+#post-comment-box button {
+  width: 100px;
 }
 
 /* ******************************** ^indiv articles*/

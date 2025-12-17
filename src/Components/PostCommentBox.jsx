@@ -7,7 +7,7 @@ function PostCommentBox({
 }) {
   const [commentText, setCommentText] = useState("");
   const [isPosting, setIsPosting] = useState(false);
-  const [emptyFieldMessage, setEmptyFieldMessage] = useState("");
+  const [emptyFieldMessage, setEmptyFieldMessage] = useState(null);
   const [error, setError] = useState(null);
 
   function handleSubmit(event) {
@@ -17,7 +17,7 @@ function PostCommentBox({
       setEmptyFieldMessage("Cannot submit an empty field. Please try again.");
     } else {
       setIsPosting(true);
-      setEmptyFieldMessage("");
+      setEmptyFieldMessage(null);
 
       const postingBody = commentText;
       const postTimestamp = new Date(Date.now());
@@ -65,20 +65,20 @@ function PostCommentBox({
   }
 
   return (
-    <>
-      <h3>Post Comment Box</h3>
-      <p>{emptyFieldMessage}</p>
+    <section id="post-comment-box">
+      {emptyFieldMessage && (
+        <p className="loading-and-error">{emptyFieldMessage}</p>
+      )}
       {error && (
         <p className="loading-and-error">
           There was a problem posting your comment. Please check your
           connection, refresh, and try again.
         </p>
       )}
-      <form id="post-comment-box" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label>
-          Type Comment:
+          Type Comment:{" "}
           <input
-            id="post-comment-text-area"
             type="text"
             value={commentText}
             onChange={(event) => {
@@ -86,11 +86,11 @@ function PostCommentBox({
             }}
           ></input>
         </label>
-        <button id="post-comment-button" type="submit" disabled={isPosting}>
+        <button type="submit" disabled={isPosting}>
           {isPosting ? "Saving..." : "Post"}
         </button>
       </form>
-    </>
+    </section>
   );
 }
 
