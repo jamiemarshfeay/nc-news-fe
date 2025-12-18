@@ -77,18 +77,19 @@ function PostCommentBox({
       )}
       <form onSubmit={handleSubmit}>
         <label>
-          Type Comment:{" "}
-          <input
-            type="text"
+          What are your thoughts?{" "}
+          <button type="submit" disabled={isPosting}>
+            {isPosting ? "Saving..." : "Post"}
+          </button>
+          <textarea
+            rows={1}
+            placeholder="Type comment here..."
             value={commentText}
             onChange={(event) => {
               return setCommentText(event.target.value);
             }}
-          ></input>
+          ></textarea>
         </label>
-        <button type="submit" disabled={isPosting}>
-          {isPosting ? "Saving..." : "Post"}
-        </button>
       </form>
     </section>
   );
