@@ -65,7 +65,7 @@ function PostCommentBox({
   }
 
   return (
-    <section id="post-comment-box">
+    <section>
       {emptyFieldMessage && (
         <p className="loading-and-error">{emptyFieldMessage}</p>
       )}
@@ -76,8 +76,8 @@ function PostCommentBox({
         </p>
       )}
       <form onSubmit={handleSubmit}>
-        <label>
-          What are your thoughts?{" "}
+        <div id="post-comment-box">
+          <label>What are your thoughts?</label>
           <button type="submit" disabled={isPosting}>
             {isPosting ? "Saving..." : "Post"}
           </button>
@@ -89,7 +89,7 @@ function PostCommentBox({
               return setCommentText(event.target.value);
             }}
           ></textarea>
-        </label>
+        </div>
       </form>
     </section>
   );
