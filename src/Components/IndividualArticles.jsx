@@ -8,6 +8,7 @@ import CommentSection from "./CommentSection";
 function IndividualArticles() {
   const { article_id } = useParams();
   const [articleDetailsToDisplay, setArticleDetailsToDisplay] = useState({});
+  const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -73,7 +74,10 @@ function IndividualArticles() {
         role="presentation"
       />
       <div>
-        <ArticleDetails articleDetailsToDisplay={articleDetailsToDisplay} />
+        <ArticleDetails
+          articleDetailsToDisplay={articleDetailsToDisplay}
+          commentCount={commentsList.length}
+        />
         <VotingButtons
           articleDetailsToDisplay={articleDetailsToDisplay}
           onVoteApplied={onVoteApplied}
@@ -81,7 +85,11 @@ function IndividualArticles() {
         />
       </div>
       <p id="indiv-article-body">{articleDetailsToDisplay.body}</p>
-      <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
+      <CommentSection
+        articleDetailsToDisplay={articleDetailsToDisplay}
+        commentsList={commentsList}
+        setCommentsList={setCommentsList}
+      />
     </section>
   );
 }

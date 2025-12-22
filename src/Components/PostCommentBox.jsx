@@ -65,7 +65,7 @@ function PostCommentBox({
   }
 
   return (
-    <section>
+    <>
       {emptyFieldMessage && (
         <p className="loading-and-error">{emptyFieldMessage}</p>
       )}
@@ -75,23 +75,23 @@ function PostCommentBox({
           connection, refresh, and try again.
         </p>
       )}
-      <form onSubmit={handleSubmit}>
-        <div id="post-comment-box">
-          <label>What are your thoughts?</label>
+      <form id="post-comment-box" onSubmit={handleSubmit}>
+        <section>
+          <label>What are your thoughts on the article?</label>
           <button type="submit" disabled={isPosting}>
             {isPosting ? "Saving..." : "Post"}
           </button>
-          <textarea
-            rows={1}
-            placeholder="Type comment here..."
-            value={commentText}
-            onChange={(event) => {
-              return setCommentText(event.target.value);
-            }}
-          ></textarea>
-        </div>
+        </section>
+        <textarea
+          rows={1}
+          placeholder="Type comment here..."
+          value={commentText}
+          onChange={(event) => {
+            return setCommentText(event.target.value);
+          }}
+        ></textarea>
       </form>
-    </section>
+    </>
   );
 }
 
