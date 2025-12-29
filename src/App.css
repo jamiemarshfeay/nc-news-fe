@@ -393,7 +393,7 @@ select {
     display: flex;
     flex-direction: column;
   }
-  
+
   #post-comment-box button {
     margin-bottom: 0.5rem;
   }
@@ -479,11 +479,24 @@ select {
 
 /* ******************************** ^indiv articles*/
 
+.topics-list h2 {
+  font-size: 32px;
+  color: var(--color-primary-dark);
+  text-align: center;
+  padding-top: 2.5rem;
+}
+
+.topics-list ul {
+  padding-top: 2rem;
+}
+
+/* ******************************** ^list of topics*/
+
 .loading-and-error {
   color: var(--color-primary-dark);
   font-size: 18px;
   text-align: center;
-  padding: 3rem 0;
+  padding: 2.5rem 0;
   font-weight: 600;
 }
 

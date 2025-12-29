@@ -23,10 +23,11 @@ function TopicsList() {
       });
   }, []);
 
-  if (isLoading) return <p>Loading all topics...</p>;
+  if (isLoading)
+    return <p className="loading-and-error">Loading all topics...</p>;
   if (error) {
     return (
-      <p>
+      <p className="loading-and-error">
         Unable to load topics. Please check your connection, refresh, and try
         again.
       </p>
@@ -34,25 +35,25 @@ function TopicsList() {
   }
 
   return (
-    <>
+    <section className="topics-list">
       <h2>All Topics</h2>
-      <ul id="topics-list">
+      <ul>
         {topicList.map((topic) => {
           const image =
             topic.img_url ||
             "https://images.pexels.com/photos/6424586/pexels-photo-6424586.jpeg?w=700&h=700";
           return (
             <Link to={`/topics/${topic.slug}`} key={topic.slug}>
-              <li className="topic-list-items">
-                <h2>{topic.slug}</h2>
+              <li>
+                <h3>{topic.slug}</h3>
                 <img src={image} alt="" role="presentation" />
-                <h3>{topic.description}</h3>
+                <h4>{topic.description}</h4>
               </li>
             </Link>
           );
         })}
       </ul>
-    </>
+    </section>
   );
 }
 
