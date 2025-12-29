@@ -318,7 +318,7 @@ select {
 .indiv-article div ul {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem 1rem;
+  gap: 1rem;
   padding-left: 1rem;
 }
 
@@ -346,6 +346,22 @@ select {
   color: var(--color-text);
 }
 
+@media (max-width: 650px) {
+  .indiv-article div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .indiv-article div ul {
+    padding: 0.5rem 1rem;
+  }
+
+  .voting-buttons {
+    padding: 0.5rem 0;
+  }
+}
+
 #indiv-article-body {
   margin: 0 2rem 1rem;
   border: 2px solid var(--color-primary-dark);
@@ -370,6 +386,21 @@ select {
   padding: 0.5rem 1rem;
   color: var(--color-bg);
   font-weight: 600;
+}
+
+@media (max-width: 650px) {
+  #post-comment-box {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  #post-comment-box button {
+    margin-bottom: 0.5rem;
+  }
+
+  #post-comment-box textarea {
+    align-self: center;
+  }
 }
 
 #post-comment-box section {
@@ -431,9 +462,14 @@ select {
   border-color: var(--color-secondary);
 }
 
+.indiv-comment ul {
+  margin-top: 1rem;
+}
+
 .indiv-comment button {
   width: 100px;
-  padding: 0.25rem
+  padding: 0.25rem;
+  margin-top: 1rem;
 }
 
 .indiv-comment button:hover {
