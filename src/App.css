@@ -120,26 +120,26 @@ select {
 
 /* ******************************** ^header*/
 
-.all-articles {
+.articles {
   display: grid;
   grid-template-rows: auto auto;
 }
 
-.all-articles div {
+.articles div {
   padding-top: 2.5rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
 }
 
-.all-articles h2 {
+.articles h2 {
   padding-right: 1rem;
   color: var(--color-primary-dark);
   text-align: end;
   font-size: 32px;
 }
 
-.all-articles section {
+.articles section {
   padding-left: 1rem;
   text-align: start;
   display: flex;
@@ -149,19 +149,19 @@ select {
 }
 
 @media (max-width: 650px) {
-  .all-articles div {
+  .articles div {
     grid-template-columns: 1fr;
     padding-top: 1.5rem;
     row-gap: 0.75rem;
   }
 
-  .all-articles h2 {
+  .articles h2 {
     padding: 0;
     text-align: center;
     font-size: 24px;
   }
 
-  .all-articles section {
+  .articles section {
     padding: 0;
     align-items: center;
     text-align: center;
@@ -172,7 +172,7 @@ select {
   }
 }
 
-.all-articles select {
+.articles select {
   border-radius: 5px;
   padding: 0.25rem;
   margin: 0.25rem;
@@ -245,7 +245,7 @@ select {
   color: var(--color-text);
 }
 
-/* ******************************** ^all articles*/
+/* ******************************** ^all articles and filtered articles*/
 
 .indiv-article {
   display: flex;
@@ -548,48 +548,24 @@ select {
 
 /* ******************************** ^list of topics*/
 
-.filtered-articles {
-  display: grid;
-  grid-template-rows: auto auto;
-}
+@media (min-width: 861px) {
+  #filtered-articles div {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-.filtered-articles div {
-  padding-top: 2.5rem;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-}
-
-.filtered-articles h2 {
-  padding-right: 1rem;
-  color: var(--color-primary-dark);
-  text-align: end;
-  font-size: 32px;
-}
-
-.filtered-articles section {
-  padding-left: 1rem;
-  text-align: start;
-  display: flex;
-  flex-direction: column;
-  font-weight: 600;
-  color: var(--color-primary-dark);
-}
-
-@media (max-width: 650px) {
-  .filtered-articles div {
+  /* #filtered-articles div {
     grid-template-columns: 1fr;
     padding-top: 1.5rem;
     row-gap: 0.75rem;
   }
 
-  .filtered-articles h2 {
+  #filtered-articles h2 {
     padding: 0;
     text-align: center;
     font-size: 24px;
   }
 
-  .filtered-articles section {
+  #filtered-articles section {
     padding: 0;
     align-items: center;
     text-align: center;
@@ -597,17 +573,7 @@ select {
 
   #sort-dropdown {
     margin-left: 17px;
-  }
-}
-
-.filtered-articles select {
-  border-radius: 5px;
-  padding: 0.25rem;
-  margin: 0.25rem;
-  min-width: 150px;
-  border: solid 2px var(--color-primary-dark);
-  font-size: 16px;
-  color: var(--color-primary-dark);
+  } */
 }
 
 /* ******************************** ^filtered articles*/

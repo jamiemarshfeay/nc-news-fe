@@ -62,7 +62,7 @@ function AllArticles() {
   }
 
   return (
-    <section className="all-articles">
+    <section className="articles">
       <div>
         <h2>All Articles</h2>
         <UtilityBar

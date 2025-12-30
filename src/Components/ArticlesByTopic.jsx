@@ -64,9 +64,17 @@ function ArticlesByTopic() {
   }
 
   return (
-    <section className="filtered-articles">
-      <h2>{`Articles to do with ${slug[0].toUpperCase() + slug.slice(1)}`}</h2>
-      <UtilityBar applyQuery={applyQuery} sortBy={sortBy} orderDir={orderDir} />
+    <section className="articles" id="filtered-articles">
+      <div>
+        <h2>{`Articles to do with ${
+          slug[0].toUpperCase() + slug.slice(1)
+        }`}</h2>
+        <UtilityBar
+          applyQuery={applyQuery}
+          sortBy={sortBy}
+          orderDir={orderDir}
+        />
+      </div>
       <ArticleList articleList={articlesToDisplay} />
     </section>
   );
