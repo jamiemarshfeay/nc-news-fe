@@ -43,13 +43,13 @@ function TopicsList() {
             topic.img_url ||
             "https://images.pexels.com/photos/6424586/pexels-photo-6424586.jpeg?w=700&h=700";
           return (
-            <Link to={`/topics/${topic.slug}`} key={topic.slug}>
-              <li>
-                <h3>{topic.slug}</h3>
+            <li>
+              <Link to={`/topics/${topic.slug}`} key={topic.slug}>
+                <h3>{topic.slug[0].toUpperCase() + topic.slug.slice(1)}</h3>
                 <img src={image} alt="" role="presentation" />
-                <h4>{topic.description}</h4>
-              </li>
-            </Link>
+                <h4>Description: {topic.description}</h4>
+              </Link>
+            </li>
           );
         })}
       </ul>

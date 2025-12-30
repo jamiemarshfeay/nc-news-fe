@@ -185,7 +185,7 @@ select {
 #article-list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 2rem;
+  padding: 1rem 2rem 2rem;
 }
 
 @media (max-width: 768px) {
@@ -294,6 +294,12 @@ select {
   color: var(--color-primary-dark);
   margin: 0.5rem 2rem 1rem;
   text-align: center;
+}
+
+@media (max-width: 650px) {
+  .indiv-article h2 {
+    font-size: 24px;
+  }
 }
 
 .indiv-article img {
@@ -486,11 +492,125 @@ select {
   padding-top: 2.5rem;
 }
 
+@media (max-width: 650px) {
+  .topics-list h2 {
+    font-size: 24px;
+  }
+}
+
 .topics-list ul {
-  padding-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 1rem 2rem 2rem;
+}
+
+@media (max-width: 750px) {
+  .topics-list ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+.topics-list li {
+  margin: 1rem;
+}
+
+.topics-list a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border: solid 2px var(--color-primary-dark);
+  border-radius: 5px;
+  background-color: var(--color-primary);
+  text-align: center;
+  color: var(--color-bg);
+}
+
+.topics-list a:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+.topics-list h3 {
+  margin: 1rem;
+}
+
+.topics-list img {
+  max-width: 80%;
+  border-radius: 8px;
+}
+
+.topics-list h4 {
+  padding: 1rem;
 }
 
 /* ******************************** ^list of topics*/
+
+.filtered-articles {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.filtered-articles div {
+  padding-top: 2.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+}
+
+.filtered-articles h2 {
+  padding-right: 1rem;
+  color: var(--color-primary-dark);
+  text-align: end;
+  font-size: 32px;
+}
+
+.filtered-articles section {
+  padding-left: 1rem;
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  color: var(--color-primary-dark);
+}
+
+@media (max-width: 650px) {
+  .filtered-articles div {
+    grid-template-columns: 1fr;
+    padding-top: 1.5rem;
+    row-gap: 0.75rem;
+  }
+
+  .filtered-articles h2 {
+    padding: 0;
+    text-align: center;
+    font-size: 24px;
+  }
+
+  .filtered-articles section {
+    padding: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  #sort-dropdown {
+    margin-left: 17px;
+  }
+}
+
+.filtered-articles select {
+  border-radius: 5px;
+  padding: 0.25rem;
+  margin: 0.25rem;
+  min-width: 150px;
+  border: solid 2px var(--color-primary-dark);
+  font-size: 16px;
+  color: var(--color-primary-dark);
+}
+
+/* ******************************** ^filtered articles*/
 
 .loading-and-error {
   color: var(--color-primary-dark);
