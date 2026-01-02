@@ -3,7 +3,6 @@
   --color-text: #111827;
   --color-primary: #2170de;
   --color-primary-dark: #11438a;
-  --color-primary-light: #4592ff;
   --color-secondary: #de8f21;
 
   --font-primary: sans-serif;
@@ -33,8 +32,6 @@ button,
 select {
   cursor: pointer;
 }
-
-/********************************* ^global*/
 
 .header {
   display: grid;
@@ -117,8 +114,6 @@ select {
     font-size: 14px;
   }
 }
-
-/* ******************************** ^header*/
 
 .articles {
   display: grid;
@@ -244,8 +239,6 @@ select {
 .article-list-link:hover ul {
   color: var(--color-text);
 }
-
-/* ******************************** ^all articles and filtered articles*/
 
 .indiv-article {
   display: flex;
@@ -483,8 +476,6 @@ select {
   color: var(--color-text);
 }
 
-/* ******************************** ^indiv articles*/
-
 .topics-list h2 {
   font-size: 32px;
   color: var(--color-primary-dark);
@@ -546,8 +537,6 @@ select {
   padding: 1rem;
 }
 
-/* ******************************** ^list of topics*/
-
 @media (min-width: 651px) and (max-width: 860px) {
   #filtered-articles h2 {
     max-width: 275px;
@@ -565,8 +554,6 @@ select {
   }
 }
 
-/* ******************************** ^filtered articles*/
-
 .loading-and-error {
   color: var(--color-primary-dark);
   font-size: 18px;
@@ -574,5 +561,3 @@ select {
   padding: 2.5rem 0;
   font-weight: 600;
 }
-
-/* ******************************** ^loading and error*/
