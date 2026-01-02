@@ -1,4 +1,4 @@
-function ArticleDetails({ articleDetailsToDisplay }) {
+function ArticleDetails({ articleDetailsToDisplay, commentCount }) {
   return (
     <>
       <ul>
@@ -19,9 +19,9 @@ function ArticleDetails({ articleDetailsToDisplay }) {
           )}/${articleDetailsToDisplay.created_at.slice(0, 4)}`}
         </li>
         <li>Likes: {articleDetailsToDisplay.votes}</li>
+        <li>Comments: {commentCount}</li>
+        <li>Article ID: {articleDetailsToDisplay.article_id}</li>
       </ul>
-      <p>{articleDetailsToDisplay.body}</p>
-      <p>Article ID: {articleDetailsToDisplay.article_id}</p>
     </>
   );
 }

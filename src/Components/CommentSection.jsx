@@ -2,8 +2,11 @@ import { useState, useEffect } from "react";
 import PostCommentBox from "./PostCommentBox";
 import DeleteComment from "./DeleteComment";
 
-function CommentSection({ articleDetailsToDisplay }) {
-  const [commentsList, setCommentsList] = useState([]);
+function CommentSection({
+  articleDetailsToDisplay,
+  commentsList,
+  setCommentsList,
+}) {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -26,10 +29,11 @@ function CommentSection({ articleDetailsToDisplay }) {
       });
   }, []);
 
-  if (isLoading) return <p>Loading comments...</p>;
+  if (isLoading)
+    return <p className="loading-and-error">Loading comments...</p>;
   if (error) {
     return (
-      <p>
+      <p className="loading-and-error">
         Unable to load comments. Please check your connection, refresh, and try
         again.
       </p>
@@ -79,18 +83,17 @@ function CommentSection({ articleDetailsToDisplay }) {
   }
 
   return (
-    <>
-      <h2>Comment Section</h2>
+    <section className="comment-section">
       <PostCommentBox
         articleDetailsToDisplay={articleDetailsToDisplay}
         onCommentPosted={onCommentPosted}
         addOrCutOptimisticCommentPost={addOrCutOptimisticCommentPost}
       />
-      <h3>Comment Count: {commentsList.length}</h3>
-      <ul>
+      <ul id="comments-list">
         {commentsList.map((comment) => {
           return (
-            <li key={comment.comment_id}>
+            <li key={comment.comment_id} className="indiv-comment">
+              {comment.body}
               <h4>
                 <ul>
                   <li>Comment Author: {comment.author}</li>
@@ -107,7 +110,6 @@ function CommentSection({ articleDetailsToDisplay }) {
                   <li>Likes: {comment.votes}</li>
                 </ul>
               </h4>
-              {comment.body}
               {comment.author === "tickle122" && (
                 <DeleteComment
                   comment={comment}
@@ -120,7 +122,7 @@ function CommentSection({ articleDetailsToDisplay }) {
           );
         })}
       </ul>
-    </>
+    </section>
   );
 }
 

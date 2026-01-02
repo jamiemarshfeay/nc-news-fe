@@ -59,9 +59,9 @@ function VotingButtons({
   }
 
   return (
-    <>
+    <section className="voting-buttons">
       {error && (
-        <h4>
+        <h4 className="loading-and-error">
           Apologies, you are unable to vote. Please check your connection,
           refresh, and try again.
         </h4>
@@ -72,7 +72,7 @@ function VotingButtons({
       <button onClick={handleClick} disabled={isVoting}>
         {isVoting ? "Saving..." : "Dislike👎"}
       </button>
-    </>
+    </section>
   );
 }
 

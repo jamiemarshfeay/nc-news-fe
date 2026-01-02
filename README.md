@@ -16,6 +16,9 @@ Users can:
 - Read full article content  
 - View, post, and delete comments  
 - Vote articles up or down with optimistic updates  
+<!-- end list -->
+
+> Note: Authorisation has not been implemented and all users are shown a hard coded message saying they are logged in as 'tickle122'. This is to allow the user to delete any comments authored by 'tickle122', purely for the display of functionality.  
 
 ---
 

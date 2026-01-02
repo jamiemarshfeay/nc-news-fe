@@ -8,6 +8,7 @@ import CommentSection from "./CommentSection";
 function IndividualArticles() {
   const { article_id } = useParams();
   const [articleDetailsToDisplay, setArticleDetailsToDisplay] = useState({});
+  const [commentsList, setCommentsList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -31,18 +32,18 @@ function IndividualArticles() {
       });
   }, [article_id]);
 
-  if (isLoading) return <p>Loading article...</p>;
+  if (isLoading) return <p className="loading-and-error">Loading article...</p>;
 
   if (error?.message && error.message !== "Failed to fetch") {
     return (
-      <p>
+      <p className="loading-and-error">
         {error.message}. Valid endpoints include '/' followed by the numbers 1
         through 37.
       </p>
     );
   } else if (error) {
     return (
-      <p>
+      <p className="loading-and-error">
         Unable to load article. Please check your connection, refresh, and try
         again.
       </p>
@@ -60,7 +61,7 @@ function IndividualArticles() {
   }
 
   return (
-    <>
+    <section className="indiv-article">
       <PreviousNextButtons
         articleDetailsToDisplay={articleDetailsToDisplay}
         isLoading={isLoading}
@@ -72,14 +73,24 @@ function IndividualArticles() {
         alt=""
         role="presentation"
       />
-      <ArticleDetails articleDetailsToDisplay={articleDetailsToDisplay} />
-      <VotingButtons
+      <div>
+        <ArticleDetails
+          articleDetailsToDisplay={articleDetailsToDisplay}
+          commentCount={commentsList.length}
+        />
+        <VotingButtons
+          articleDetailsToDisplay={articleDetailsToDisplay}
+          onVoteApplied={onVoteApplied}
+          onOptimisticVote={onOptimisticVote}
+        />
+      </div>
+      <p id="indiv-article-body">{articleDetailsToDisplay.body}</p>
+      <CommentSection
         articleDetailsToDisplay={articleDetailsToDisplay}
-        onVoteApplied={onVoteApplied}
-        onOptimisticVote={onOptimisticVote}
+        commentsList={commentsList}
+        setCommentsList={setCommentsList}
       />
-      <CommentSection articleDetailsToDisplay={articleDetailsToDisplay} />
-    </>
+    </section>
   );
 }
 

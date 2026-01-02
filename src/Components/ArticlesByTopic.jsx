@@ -42,11 +42,12 @@ function ArticlesByTopic() {
     });
   }
 
-  if (isLoading) return <p>Loading articles...</p>;
+  if (isLoading)
+    return <p className="loading-and-error">Loading articles...</p>;
 
   if (error?.message && error.message !== "Failed to fetch") {
     return (
-      <p>
+      <p className="loading-and-error">
         {error.message}. Valid endpoints include '/coding', '/football', and
         '/cooking'. Valid queries include 'sort_by' and 'order', the first of
         which will take values 'created_at', 'votes', 'comment_count', 'author',
@@ -55,7 +56,7 @@ function ArticlesByTopic() {
     );
   } else if (error) {
     return (
-      <p>
+      <p className="loading-and-error">
         Unable to load articles. Please check your connection, refresh, and try
         again.
       </p>
@@ -63,11 +64,19 @@ function ArticlesByTopic() {
   }
 
   return (
-    <>
-      <h2>{`Articles to do with ${slug[0].toUpperCase() + slug.slice(1)}`}</h2>
-      <UtilityBar applyQuery={applyQuery} sortBy={sortBy} orderDir={orderDir} />
+    <section className="articles" id="filtered-articles">
+      <div>
+        <h2>{`Articles to do with ${
+          slug[0].toUpperCase() + slug.slice(1)
+        }`}</h2>
+        <UtilityBar
+          applyQuery={applyQuery}
+          sortBy={sortBy}
+          orderDir={orderDir}
+        />
+      </div>
       <ArticleList articleList={articlesToDisplay} />
-    </>
+    </section>
   );
 }
 
