@@ -7,7 +7,7 @@ https://jcmf-nc-news-app.netlify.app
 
 ### Project Summary
 
-NC News is an interactive news application that allows users to browse, sort, and read articles across a range of topics. Each article page includes comments, user voting functionality, and dynamic updates powered by the RESTful API. The frontend is built with React and communicates with the NC News backend hosted on Render.
+NC News is an interactive news application that allows users to browse, sort, and read articles across a range of topics. Each article page includes comments, user voting functionality, and dynamic updates powered by the **RESTful API**. The frontend is built with **React** and communicates with the NC News backend hosted on **Render**.
 
 Users can:
 - Browse all articles  
@@ -28,12 +28,12 @@ https://github.com/jamiemarshfeay/nc-news-BE
 
 ---
 
-### Minimum Versions Required
+### Technology Requirements
 
 Before running the project locally, ensure you have the following installed:  
 - **Node.js:** v24.9.0   
 
-You can confirm your version with:  
+This project was developed and tested using the version above. It may work with older versions, but this hasn't been explicitly tested. You can confirm your version with:  
 `node -v`  
 
 ---
